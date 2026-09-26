@@ -11,7 +11,7 @@ One page shows the state of Vana'diel right now, updated every second:
 - Vana'diel time and date, day element, and moon phase
 - Players online and the current level sync penalty
 - Ferry, airship, and regional boat schedules with boarding countdowns
-- Race-specific equipment (RSE) rotation, conquest tally, and chocobo riding game routes
+- Race-specific equipment (RSE) rotation and conquest tally
 - Guild hours and holidays
 - Weather pools by element and a per-zone forecast
 
@@ -25,7 +25,7 @@ Modeled on the [Phoenix world info page](https://phoenix-xi.com/world-info), whi
 
 Every number comes from a public Horizon source, or from a source Horizon itself relies on:
 
-- **[HorizonXI Wiki](https://horizonffxi.wiki)**: the wiki's Vana'diel time script (by Horizogenes) supplies the time math, moon phases, RSE rotation, conquest timing, transport schedules, guild hours, and chocobo routes. Other wiki pages cover level sync tiers and holiday details.
+- **[HorizonXI Wiki](https://horizonffxi.wiki)**: the wiki's Vana'diel time script (by Horizogenes) supplies the time math, moon phases, RSE rotation, conquest timing, transport schedules, and guild hours. Other wiki pages cover level sync tiers and holiday details.
 - **HorizonXI Wiki API**: the live player count, the same feed the wiki uses.
 - **[LandSandBoat](https://github.com/LandSandBoat/server)**: weather comes from LSB's zone weather table, which the Horizon wiki forecast is built on. The data here was checked against the wiki's forecast and matched on every sampled day.
 

@@ -203,8 +203,6 @@ footer{margin-top:40px;color:var(--dim);font-size:.88rem;max-width:72ch}
         <option value="hi">60% or more</option><option value="lo">40% or less</option></select></label>
     </div></div>
     <div class="tablewrap"><table><thead><tr><th>Starts (your time)</th><th>In</th><th>Vana'diel date</th><th>Moon</th></tr></thead><tbody id="fOut"></tbody></table></div></div>
-  <div class="sect"><div class="sect-h"><div><div class="kicker">Chocobo riding game</div><h3>Route rotation</h3></div></div>
-    <div class="tablewrap"><table><thead><tr><th>Route</th><th>Reward</th><th>Time limit</th><th>Window</th></tr></thead><tbody id="chocoOut"></tbody></table></div></div>
 </section>
 
 <section role="tabpanel" id="p-travel" hidden>
@@ -324,11 +322,6 @@ const RSE_DATE = 1075281264000;
 const RACES = ["Hume male","Hume female","Elvaan male","Elvaan female","Tarutaru male","Tarutaru female","Mithra","Galka"];
 const RSE_LOC = ["Gusgen Mines","Maze of Shakhrami","Ordelle's Caves"];
 const CONQ_EPOCH = 1024844400000, EWEEK = 7 * 86400000;
-const CHOCO = {
-  "Bastok Mines":[["Southern San d'Oria","Dragon Chronicles","20:00"],["Windurst Woods","Miratete's Memoirs","32:29"],["Lower Jeuno","Bastok Mines Glyph","18:29"]],
-  "Southern San d'Oria":[["Upper Jeuno","Southern San d'Oria Glyph","13:29"],["Bastok Mines","Dragon Chronicles","20:00"],["Windurst Woods","Miratete's Memoirs","28:29"]],
-  "Windurst Woods":[["Bastok Mines","Miratete's Memoirs","32:29"],["Port Jeuno","Windurst Woods Glyph","15:29"],["Southern San d'Oria","Miratete's Memoirs","28:29"]]
-};
 const MOON_NAMES = ["New Moon","Waxing Crescent","First Quarter","Waxing Gibbous","Full Moon","Waning Gibbous","Last Quarter","Waning Crescent"];
 const MOON_RANGES = ["10% to 0% to 5%","7% to 38%","40% to 55%","57% to 88%","90% to 100% to 95%","93% to 62%","60% to 45%","43% to 12%"];
 
@@ -495,16 +488,6 @@ function renderDaily(d){
   }
   $("moonOut").innerHTML = rows.join("");
 
-  // chocobo riding: 3-slot rotation per Vana day
-  const cr = [];
-  for (let i = 0; i < 3; i++){
-    const x = d + i, slot = (((x - 1) % 3) + 3) % 3;
-    for (const [city, legs] of Object.entries(CHOCO)){
-      const [dest, reward, max] = legs[slot];
-      cr.push(`<tr class="${i ? "" : "cur"}"><td>${city} → ${dest}</td><td>${reward}</td><td>${max}</td><td>${i ? `${local(vmToEarth(x * 1440))} to ${local(vmToEarth((x + 1) * 1440))}` : `Now, ends ${local(vmToEarth((x + 1) * 1440))}`}</td></tr>`);
-    }
-  }
-  $("chocoOut").innerHTML = cr.join("");
   renderFinder();
   renderWeather(d);
 }
