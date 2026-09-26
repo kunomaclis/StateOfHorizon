@@ -86,7 +86,7 @@ tr.cur td{background:rgba(80,180,214,.08)!important;color:#fff;font-weight:500}
 .sect{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:18px}
 .sect-h{display:flex;justify-content:space-between;align-items:flex-end;gap:14px 24px;flex-wrap:wrap;padding:22px 26px;border-bottom:1px solid var(--line)}
 .sect-h h3{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.6vw,2.3rem);letter-spacing:.04em;line-height:1;color:#fff;margin:8px 0 0}
-.sect-h .aside{color:var(--muted);font-size:.92rem}
+.sect-h .aside{color:var(--muted);font-size:.92rem;text-align:right}
 .sect-h .finder{margin:0}
 .sect-b{padding:22px 26px}
 .sect table{border:0;border-radius:0;background:none}
@@ -223,7 +223,7 @@ footer{margin-top:40px;color:var(--dim);font-size:.88rem;max-width:72ch}
 
 <section role="tabpanel" id="p-weather" hidden>
   <div class="sect"><div class="sect-h"><div><div class="kicker">Elemental forecast</div><h3>Today's weather pools</h3></div>
-    <div class="aside">Normal 50% · Common 35% · Rare 15%</div></div>
+    <div class="aside">Chance per roll: Normal 50% · Common 35% · Rare 15%<br>Zones re-roll every 3 to 30 minutes</div></div>
     <div class="sect-b"><div class="wxgrid" id="wxGrid"></div><div class="zgrid" id="wxZones"></div></div></div>
   <div class="sect"><div class="sect-h"><div><div class="kicker">Zone forecast</div><h3>Upcoming days</h3></div>
     <div class="finder">
@@ -231,7 +231,7 @@ footer{margin-top:40px;color:var(--dim);font-size:.88rem;max-width:72ch}
       <label>Show days with <select id="wxEl"><option value="">Any weather</option></select></label>
     </div></div>
     <div class="tablewrap"><table><thead><tr><th>Day</th><th>Starts (your time)</th><th>Normal 50%</th><th>Common 35%</th><th>Rare 15%</th></tr></thead><tbody id="wxOut"></tbody></table></div></div>
-  <p class="note">These are the pools each zone rolls from, not the live weather. Checked against the Horizon wiki forecast: 13 of 13 days match across seven zones.</p>
+  <p class="note">A zone's % is the chance each roll lands on that element, so Normal 50% + Rare 15% = 65%. Over a whole day your odds are higher. From 02:00 to 07:00 outside cities, plain weather rolls turn to fog.</p>
 </section>
 
 <footer>Schedules come from the Horizon wiki's Vana'diel time script (Horizogenes). Weather comes from LandSandBoat's table, matched to the wiki forecast. Verify against <code>/clock</code> in game.</footer>
