@@ -17,6 +17,12 @@ Fan-made world info page for the HorizonXI FFXI private server, modeled on Phoen
 
 Layout mirrors Phoenix. Hero: kicker `Period · Y1513 M5 D22`, title and subtitle on the left, big Highwind clock on the right with a green "N players online" badge under it (hidden until the population fetch succeeds), flat 24h day bar with a sun/moon marker along the bottom (subtle sky tint keyed to Vana hour). 4 tiles: Moon, Day cycle (element chip only; the strip below shows upcoming days), Guild halls, Level sync (sub-line names the population tier). Tiles go 4 -> 2 -> 1 columns at 1060px / 640px; dividers are 1px grid gaps. Tabs: Overview (8-day strip, then Next ferry / Next airship / Current RSE / Conquest tally cards with "View ... →" links), Calendar & RSE, Travel, Guilds, Weather.
 
+Tabs use "section panels" (`.sect`: kicker + Highwind title header, body below). Times are list rows (`depRow`/`.rowi`): route, Vana day + boards/departs times, countdown to boarding (then departure) with local departure time under it.
+- Calendar: active RSE panel beside upcoming rotation list; moon phases, find a day, chocobo game as panels with tables.
+- Travel: Selbina/Mhaura terminal panels, airships in a 2-column Jeuno -> city / city -> Jeuno grid, regional boats (`BOATS_REG` = [region, service, routes]).
+- Guilds: hours table panel; daily GP panel shows reset countdown only (no Horizon source for the pattern).
+- Weather: element tiles, then matching-zone cards with % and pool chips (identical pools merged, "All pools"); zone forecast panel.
+
 Day chips: element glyph + day name on a dark `#05080B` plate with a day-colored border. All glyphs are our own inline SVGs, not game or Phoenix assets: `EL_ICON` (elements; tiles, strip, guild holidays, weather), `GUILD_ICON` (guild table), `RACE_ICON` (head silhouettes; RSE card and table), `CARD_ICON` (ferry, airship, conquest flag). Tab state in URL hash. Everything recomputes client-side every 1s; daily tables re-render on Vana day change.
 
 ## Time math (from Horizon wiki VanaTime.js)
