@@ -52,7 +52,8 @@ Day chips: element glyph + day name on a dark `#05080B` plate with a day-colored
 
 ## Live data
 
-- Population: `https://horizonffxi.wiki/w/api.php?action=fetchproxy&format=json&origin=*` returns `{fetchproxy: <online count>}`. CORS works from github.io. Polled every 5 min (same as wiki).
+- Population: `https://horizonffxi.wiki/w/api.php?action=fetchproxy&format=json&origin=*` returns `{fetchproxy: N}`, where N is Horizon's level sync population (`api.horizonxi.com/api/v1/misc/exp-sync-status`), not horizonxi.com's "N ONLINE" count (`misc/status`, usually lower). CORS works from github.io. Polled every 5 min (same as wiki).
+- `misc/status` only sends CORS headers for `https://horizonxi.com`, so github.io can't read it. Owner chose to keep the badge on the sync figure (2026-09-26); don't add a proxy.
 - Level sync penalty per level over +10 (wiki): >=2001 online 2.5%, >=1001 2%, else 1.5%.
 
 ## Calibration checks (expected values)
