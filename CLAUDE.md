@@ -15,7 +15,9 @@ Fan-made world info page for the HorizonXI FFXI private server, modeled on Phoen
 
 ## Page structure
 
-Hero (sky gradient keyed to Vana hour, Highwind clock) + 4 tiles (Moon, Conquest, Guild halls, Level sync), then tabs: Overview, Calendar & RSE, Travel, Guilds, Weather. Tab state in URL hash. Everything recomputes client-side every 1s; daily tables re-render on Vana day change.
+Layout mirrors Phoenix. Hero: kicker `Period · Y1513 M5 D22`, title and subtitle on the left, big Highwind clock on the right with a green "N players online" badge under it (hidden until the population fetch succeeds), flat 24h day bar with a sun/moon marker along the bottom (subtle sky tint keyed to Vana hour). 4 tiles: Moon, Day cycle (element chip only; the strip below shows upcoming days), Guild halls, Level sync (sub-line names the population tier). Tiles go 4 -> 2 -> 1 columns at 1060px / 640px; dividers are 1px grid gaps. Tabs: Overview (8-day strip, then Next ferry / Next airship / Current RSE / Conquest tally cards with "View ... →" links), Calendar & RSE, Travel, Guilds, Weather.
+
+Day chips: element glyph + day name on a dark `#05080B` plate with a day-colored border. All glyphs are our own inline SVGs, not game or Phoenix assets: `EL_ICON` (elements; tiles, strip, guild holidays, weather), `GUILD_ICON` (guild table), `RACE_ICON` (head silhouettes; RSE card and table), `CARD_ICON` (ferry, airship, conquest flag). Tab state in URL hash. Everything recomputes client-side every 1s; daily tables re-render on Vana day change.
 
 ## Time math (from Horizon wiki VanaTime.js)
 
@@ -56,12 +58,13 @@ Hero (sky gradient keyed to Vana hour, Highwind clock) + 4 tiles (Moon, Conquest
 
 ## Style (matched to horizonxi.com dark pages)
 
+- Highwind verified loading on github.io (horizonxi.com sends `access-control-allow-origin: *`).
+
 - Fonts: Highwind (display, loaded from `https://horizonxi.com/fonts/hinted-Highwind.woff2`, fallback Oswald), Roboto (body), Inconsolata (countdowns/times).
 - Colors: bg `#080D12`, text `#E1E1E1`, cream `#FDF6E3`, muted `#A9AFB5`, accent `#50B4D6`, gold `#E6B94F`. Faint teal + gold radial glows. Translucent dark panels, hairline borders, capsule tab bar with teal-ringed active pill. Dark mode only.
 
 ## Open items
 
-- **Verify Highwind loads on github.io** (DevTools > Network > Font). If CORS blocks it, keep the Oswald fallback and ask Horizon before self-hosting the font.
 - **Design cleanup pass** is next (owner has ideas pending).
 - Alchemy holiday conflict: wiki script says Lightningday; wiki Alchemy page says Lightsday (Bastok) / Lightningday (Whitegate). Using script value, flagged in UI. Verify in game.
 - Bastok airship: script departs 01:14, wiki static table 01:12 (about 5 real seconds). Using script.

@@ -21,26 +21,40 @@ html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
 body{margin:0;min-height:100vh;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;font-variant-numeric:tabular-nums;
   background:radial-gradient(900px 600px at 8% -10%,rgba(80,180,214,.12),transparent 60%),radial-gradient(800px 500px at 100% 0%,rgba(230,185,79,.08),transparent 60%),var(--bg);background-attachment:fixed}
 ::-webkit-scrollbar-thumb{background-color:rgba(182,191,200,.3)}::-webkit-scrollbar-thumb:hover{background-color:rgba(182,191,200,.5)}
-.wrap{max-width:1180px;margin:0 auto;padding:36px 20px 56px}
-.pagetitle{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,4.4rem);letter-spacing:.04em;line-height:1;color:#fff;margin:0 0 6px}
-.pagesub{color:var(--muted);margin:0 0 24px}
+.wrap{max-width:1280px;margin:0 auto;padding:36px 20px 56px}
 .eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 
-.sky{position:relative;border:1px solid var(--line);border-bottom:0;border-radius:16px 16px 0 0;overflow:hidden;min-height:280px;color:var(--cream);
-  background:linear-gradient(180deg,var(--sky-top,#0B1220),var(--sky-bot,#1A2230));transition:background 2s linear}
-.sky svg{position:absolute;inset:0;width:100%;height:100%}
-.sky .ground{position:absolute;left:0;right:0;bottom:0;height:38%;background:linear-gradient(180deg,rgba(8,13,18,.4),rgba(8,13,18,.92))}
-.sky .content{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding:26px 30px;min-height:280px}
-.sky h1{margin:0 0 6px}
-.clock{font-family:var(--display);font-weight:400;font-size:clamp(4.6rem,13vw,8.5rem);line-height:.9;letter-spacing:.03em;color:#fff}
-.sub{font-size:1rem;color:var(--muted);margin-top:10px}
-.today{text-align:right}.today .el{font-family:var(--display);font-size:2.2rem;letter-spacing:.04em}.today .note{color:var(--muted)}
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));background:var(--panel);border:1px solid var(--line);border-radius:0 0 16px 16px;backdrop-filter:blur(6px)}
-.tile{padding:16px 20px;border-left:1px solid var(--line);display:flex;gap:12px;align-items:center}
-.tile:first-child{border-left:0}
-.tile h2{margin:0 0 2px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.tile p{margin:0;color:var(--muted);font-size:.92rem}.tile .big{color:var(--ink);font-size:1.02rem;font-weight:500}
-.mono,.tile p:not(.big),.cd,.day .when{font-family:var(--mono);letter-spacing:.01em}
+/* hero: tinted by the Vana hour, kept close to the panel color so it stays subtle */
+.hero{position:relative;border:1px solid var(--line);border-bottom:0;border-radius:16px 16px 0 0;overflow:hidden;color:var(--cream);
+  background:linear-gradient(180deg,var(--sky-top,#0E1520),var(--sky-bot,#121A24));transition:background 2s linear}
+.hero .content{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap;padding:30px 32px 22px}
+.kicker{font-size:.82rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.pagetitle{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,4.6rem);letter-spacing:.04em;line-height:1;color:#fff;margin:10px 0 12px}
+.pagesub{color:var(--muted);margin:0;max-width:52ch}
+.time{text-align:right}
+.clock{font-family:var(--display);font-weight:400;font-size:clamp(4.6rem,13vw,8.5rem);line-height:.9;letter-spacing:.03em;color:#fff;margin-top:6px}
+.daybar{padding:0 32px 18px}
+.daybar .track{position:relative;height:4px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,#1E2A48 0%,#1E2A48 21%,#C98A5A 26%,#5FA8CF 32%,#5FA8CF 68%,#C9785A 74%,#2A2A4A 80%,#1E2A48 100%)}
+.daybar .track span{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:2px solid var(--bg);background:var(--c,#F6C865);box-shadow:0 0 8px var(--c,#F6C865)}
+.daybar .ticks{position:relative;height:1.2em;margin-top:6px;font-family:var(--mono);font-size:.72rem;color:var(--dim)}
+.daybar .ticks span{position:absolute;transform:translateX(-50%)}
+.daybar .ticks span:first-child{transform:none}.daybar .ticks span:last-child{transform:translateX(-100%)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:0 0 16px 16px;overflow:hidden}
+.tile{padding:16px 20px;background:#121921;display:flex;gap:14px;align-items:center;min-width:0}
+.tile h2{margin:0 0 4px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.tile p{margin:0;color:var(--muted);font-size:.88rem}.tile .big{color:var(--ink);font-size:1.02rem;font-weight:500}
+.online{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:5px 12px;border:1px solid rgba(95,196,138,.35);border-radius:999px;background:rgba(95,196,138,.08);color:var(--muted);font-size:.92rem}
+.online b{color:#fff;font-size:1.05rem;font-weight:700}
+.online .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(95,196,138,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(95,196,138,0)}100%{box-shadow:0 0 0 0 rgba(95,196,138,0)}}
+.gl{display:inline-flex;align-items:center;gap:8px}.gl svg{flex:none;color:var(--muted)}
+.ico{flex:none;display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:rgba(8,13,18,.5);color:var(--muted)}
+.tile p:not(.big),.cd,.day .when,.card .t{font-family:var(--mono);letter-spacing:.01em}
+/* day chip: element icon + name on a dark plate so every color reads */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 7px;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);border-radius:4px;background:#05080B;color:var(--c);font-weight:500;white-space:nowrap;line-height:1.4}
+.chip svg,.wx svg,.wxgrid svg{flex:none}
+td .chip{font-size:.92rem}
 
 nav[role=tablist]{display:inline-flex;gap:2px;margin:30px 0 18px;padding:5px;background:var(--panel);border:1px solid var(--line);border-radius:999px;max-width:100%;overflow-x:auto}
 nav button{font:inherit;font-size:1rem;font-weight:500;color:var(--muted);background:none;border:1px solid transparent;border-radius:999px;padding:8px 18px;cursor:pointer;white-space:nowrap;transition:color .2s var(--ease),background .2s var(--ease)}
@@ -50,14 +64,15 @@ nav button:focus-visible,select:focus-visible,.wxgrid button:focus-visible{outli
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
-.card h3{margin:0 0 8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.card .head{display:flex;align-items:center;gap:12px;margin-bottom:12px}.card .head .ico{width:38px;height:38px}
+.card h3{margin:0;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 .card p{margin:2px 0;color:var(--muted)}.card .big{color:var(--ink);font-size:1.15rem;font-weight:500}
 .card a,.note a,footer a{color:var(--accent)}
 h4{font-size:1.35rem;font-weight:900;color:var(--muted);margin:32px 0 12px}
-.strip{display:grid;grid-template-columns:repeat(8,minmax(118px,1fr));gap:8px;overflow-x:auto;padding-bottom:4px}
-.day{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:10px;padding:12px}
-.day.now{box-shadow:inset 0 0 0 1px var(--c)}
-.day .when{font-size:.85rem;color:var(--dim)}.day .name{font-weight:700;font-size:1.08rem;color:var(--c);margin:4px 0 8px}
+.strip{display:grid;grid-template-columns:repeat(8,minmax(142px,1fr));gap:8px;overflow-x:auto;padding-bottom:4px}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 10px}
+.day.now{border-color:var(--accent);box-shadow:inset 0 0 0 1px rgba(80,180,214,.35)}
+.day .when{font-size:.85rem;color:var(--dim)}.day.now .when{color:var(--accent)}.day .name{margin:8px 0 12px}.day .chip{display:flex;font-size:.88rem;padding:3px 8px 3px 6px;gap:5px}
 .day .m{display:flex;gap:8px;align-items:center;font-size:.88rem;color:var(--muted)}
 .tablewrap{overflow-x:auto;border-radius:12px}
 table{border-collapse:collapse;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -76,37 +91,43 @@ select{font:inherit;font-size:1rem;letter-spacing:normal;text-transform:none;fon
 footer{margin-top:40px;color:var(--dim);font-size:.88rem;max-width:72ch}
 [hidden]{display:none!important}
 .wxgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
-.wxgrid button{font:inherit;text-align:left;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:10px;padding:10px 12px;cursor:pointer;transition:background .2s var(--ease)}
+.wxgrid button{font:inherit;text-align:left;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;transition:background .2s var(--ease)}
 .wxgrid button:hover{background:var(--panel2)}
-.wxgrid button[aria-pressed=true]{box-shadow:inset 0 0 0 1px var(--c);background:var(--panel2)}
-.wxgrid b{display:block;font-size:1.05rem;color:var(--c)}
+.wxgrid button[aria-pressed=true]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c);background:var(--panel2)}
+.wxgrid b{display:flex;align-items:center;gap:6px;font-size:1.05rem;color:var(--c)}
 .wxgrid span{color:var(--dim);font-size:.85rem}
-.wx{white-space:nowrap}.wx.el{font-weight:500}.wx.dbl::after{content:" (double)";font-weight:400;color:var(--dim);font-size:.85em}
-@media (max-width:640px){.sky .content{padding:22px}.today{text-align:left}.tile{border-left:0;border-top:1px solid var(--line)}.tile:first-child{border-top:0}}
-@media (prefers-reduced-motion:reduce){.sky,nav button{transition:none}}
+.wx{white-space:nowrap}.wx.el{font-weight:500;display:inline-flex;align-items:center;gap:5px}.wx.dbl::after{content:" (double)";font-weight:400;color:var(--dim);font-size:.85em}
+.card .more{display:inline-block;margin-top:14px;text-decoration:none}.card .more:hover{text-decoration:underline}
+@media (max-width:1060px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.hero .content{padding:24px 22px 18px}.daybar{padding:0 22px 16px}.time{text-align:left}.tiles{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.hero,nav button{transition:none}.online .dot{animation:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1 class="pagetitle">State of Horizon</h1>
-<p class="pagesub">Vana'diel time, moon, travel, guilds and weather for HorizonXI.</p>
-
-<section class="sky" id="sky" aria-label="Current Vana'diel time">
-  <svg viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M40 200 Q500 -52 960 200" fill="none" stroke="rgba(255,255,255,.18)" stroke-dasharray="3 7"/>
-    <circle id="body" r="18" cx="500" cy="90" fill="#F6D98A"/>
-  </svg>
-  <div class="ground"></div>
+<section class="hero" id="sky" aria-label="Current Vana'diel time">
   <div class="content">
-    <div><div class="eyebrow">Vana'diel time</div><div class="clock" id="clock">--:--</div><div class="sub" id="date"></div></div>
-    <div class="today"><div class="el" id="todayEl"></div><div class="note" id="todayNote"></div><div class="note" id="nextDay"></div></div>
+    <div>
+      <div class="kicker" id="date"></div>
+      <h1 class="pagetitle">State of Horizon</h1>
+      <p class="pagesub">Vana'diel time, moon phases, travel schedules, guild hours and weather for HorizonXI.</p>
+    </div>
+    <div class="time"><div class="eyebrow">Vana'diel time</div><div class="clock" id="clock">--:--</div>
+      <div class="online" id="online" hidden><span class="dot"></span><span><b id="onlineN"></b> players online</span></div></div>
+  </div>
+  <div class="daybar" aria-hidden="true">
+    <div class="track"><span id="dayMark"></span></div>
+    <div class="ticks"><span style="left:0">00:00</span><span style="left:25%">06:00</span><span style="left:50%">12:00</span><span style="left:75%">18:00</span><span style="left:100%">24:00</span></div>
   </div>
 </section>
 <div class="tiles">
   <div class="tile"><span id="tMoonIcon"></span><div><h2>Moon</h2><p class="big" id="tMoon"></p><p id="tMoonNew"></p><p id="tMoonFull"></p></div></div>
-  <div class="tile"><div><h2>Conquest tally</h2><p class="big" id="tConq"></p><p id="tConqAt"></p></div></div>
-  <div class="tile"><div><h2>Guild halls</h2><p class="big" id="tGuild"></p><p id="tGuildNext"></p></div></div>
-  <div class="tile"><div><h2>Level sync</h2><p class="big" id="tSync">1.5% to 2.5% per level over +10</p><p id="tSyncPop">Scales with players online</p></div></div>
+  <div class="tile"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+    <div><h2>Day cycle</h2><p class="big" id="tDay"></p></div></div>
+  <div class="tile"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v10h14V10M10 20v-5h4v5"/></svg></span>
+    <div><h2>Guild halls</h2><p class="big" id="tGuild"></p><p id="tGuildNext"></p></div></div>
+  <div class="tile"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+    <div><h2>Level sync</h2><p class="big" id="tSync">1.5% to 2.5% per level over +10</p><p id="tSyncPop">Scales with players online</p></div></div>
 </div>
 
 <nav role="tablist" aria-label="Sections">
@@ -120,10 +141,10 @@ footer{margin-top:40px;color:var(--dim);font-size:.88rem;max-width:72ch}
 <section role="tabpanel" id="p-overview">
   <div class="strip" id="strip"></div>
   <div class="grid" style="margin-top:14px">
-    <div class="card"><h3>Next ferry</h3><p class="big" id="oFerry"></p><p id="oFerryT"></p></div>
-    <div class="card"><h3>Next airship</h3><p class="big" id="oAir"></p><p id="oAirT"></p></div>
-    <div class="card"><h3>Current RSE</h3><p class="big" id="oRse"></p><p id="oRseT"></p></div>
-    <div class="card"><h3>Guilds open now</h3><p class="big" id="oGuild"></p><p id="oGuildT"></p></div>
+    <div class="card"><div class="head"><span class="ico" id="icoFerry"></span><h3>Next ferry</h3></div><p class="big" id="oFerry"></p><p class="t" id="oFerryT"></p><a class="more" href="#travel" data-go="travel">View ferries →</a></div>
+    <div class="card"><div class="head"><span class="ico" id="icoAir"></span><h3>Next airship</h3></div><p class="big" id="oAir"></p><p class="t" id="oAirT"></p><a class="more" href="#travel" data-go="travel">View airships →</a></div>
+    <div class="card"><div class="head"><span class="ico" id="icoRse"></span><h3>Current RSE</h3></div><p class="big" id="oRse"></p><p id="oRseLoc"></p><p class="t" id="oRseT"></p><a class="more" href="#calendar" data-go="calendar">View rotation →</a></div>
+    <div class="card"><div class="head"><span class="ico" id="icoConq"></span><h3>Conquest tally</h3></div><p class="big">Weekly reset</p><p class="t" id="oConq"></p><p id="oConqAt"></p></div>
   </div>
 </section>
 
@@ -192,6 +213,46 @@ const wd = d => ((d % 8) + 8) % 8;
 const DAYS = [
   {n:"Firesday",c:"#E06A4E"},{n:"Earthsday",c:"#C9A44C"},{n:"Watersday",c:"#5AA0D8"},{n:"Windsday",c:"#5BC08A"},
   {n:"Iceday",c:"#8FC3E6"},{n:"Lightningday",c:"#B07CE0"},{n:"Lightsday",c:"#D9CFA6"},{n:"Darksday",c:"#9A7FBF"}];
+// Element glyphs, same order as DAYS (fire, earth, water, wind, ice, thunder, light, dark). Drawn here, not game assets.
+const S = 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+const EL_ICON = [
+  `<path fill="currentColor" d="M12 2c1 4 6 6.5 6 12a6 6 0 0 1-12 0c0-3 1.6-4.8 3-6.5.3 1.8 1.2 3 2.5 3.5C11 8 11.4 5 12 2z"/>`,
+  `<path fill="currentColor" d="M12 2l8 6-3 13H7L4 8z"/><path d="M12 2v19M4 8l8 4 8-4" fill="none" stroke="#05080B" stroke-width="1.2" opacity=".55"/>`,
+  `<path fill="currentColor" d="M12 2C9 7 5.5 10.5 5.5 14.5a6.5 6.5 0 0 0 13 0C18.5 10.5 15 7 12 2z"/>`,
+  `<path ${S} d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>`,
+  `<path ${S} d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9.5 3.5L12 6l2.5-2.5M9.5 20.5L12 18l2.5 2.5"/>`,
+  `<path fill="currentColor" d="M14 2L4 14h7l-2 8 11-13h-7z"/>`,
+  `<circle cx="12" cy="12" r="4" fill="currentColor"/><path ${S} d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>`,
+  `<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M14.5 5.2a7 7 0 1 0 0 13.6 6 6 0 0 1 0-13.6z"/>`];
+const elIcon = (i, size = 16) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true">${EL_ICON[i]}</svg>`;
+// Guild, race and card glyphs. Also drawn here.
+const GUILD_ICON = {
+  Alchemy: `<path ${S} d="M9 3h6M10 3v6L4.8 18.6A1.6 1.6 0 0 0 6.2 21h11.6a1.6 1.6 0 0 0 1.4-2.4L14 9V3M7 15h10"/>`,
+  Smithing: `<path ${S} d="M13 3l8 8-2.5 2.5-8-8zM12 8l-8 8.5a2.1 2.1 0 0 0 3 3L15.5 11"/>`,
+  Bonecraft: `<path ${S} stroke-width="3" d="M7.5 7.5l9 9"/><g fill="currentColor"><circle cx="5.2" cy="8.3" r="2.4"/><circle cx="8.3" cy="5.2" r="2.4"/><circle cx="15.7" cy="18.8" r="2.4"/><circle cx="18.8" cy="15.7" r="2.4"/></g>`,
+  Goldsmithing: `<circle cx="12" cy="15" r="6" ${S}/><path fill="currentColor" d="M12 2.5l3 3.5-3 3.5-3-3.5z"/>`,
+  Clothcraft: `<path ${S} d="M6 4h12M6 20h12M8 4v16M16 4v16M8 8l8 2.5M8 12l8 2.5M8 16l8 2"/>`,
+  Woodworking: `<circle cx="12" cy="12" r="8.5" ${S}/><circle cx="12" cy="12" r="4.5" ${S}/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>`,
+  Leathercraft: `<path ${S} d="M6 3c2 1.2 4 1.2 6 0 2 1.2 4 1.2 6 0l-1 5 2 4-2 4 1 5c-2-1.2-4-1.2-6 0-2-1.2-4-1.2-6 0l1-5-2-4 2-4z"/>`,
+  Fishing: `<path ${S} d="M2.5 12c3.5-5.5 10-6 14.5 0-4.5 6-11 5.5-14.5 0zM17 12l4.5-4v8z"/><circle cx="7" cy="11" r="1" fill="currentColor"/>`,
+  Cooking: `<path ${S} d="M5 11h14v2a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6zM3 11h18M9.5 7.5c0-1.5 1.5-1.5 1.5-3M13.5 7.5c0-1.5 1.5-1.5 1.5-3"/>`};
+// head-and-shoulders silhouettes: Hume, Elvaan, Tarutaru, Mithra, Galka
+const RACE_ICON = [
+  `<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7z"/>`,
+  `<circle cx="12" cy="8" r="3.6"/><path d="M8.8 8.4L2.5 4l5.6 6.6zM15.2 8.4L21.5 4l-5.6 6.6zM5.5 21c0-4.5 3-7 6.5-7s6.5 2.5 6.5 7z"/>`,
+  `<circle cx="12" cy="11" r="5"/><circle cx="5.8" cy="9.5" r="2.4"/><circle cx="18.2" cy="9.5" r="2.4"/><path d="M7.5 21.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5z"/>`,
+  `<circle cx="12" cy="9" r="4"/><path d="M8.6 7.2L7.8 2.4l3.4 3.2zM15.4 7.2l.8-4.8-3.4 3.2zM4.5 21c0-4.5 3.3-7 7.5-7s7.5 2.5 7.5 7z"/>`,
+  `<ellipse cx="12" cy="8.4" rx="4.3" ry="3.7"/><circle cx="7.5" cy="8" r="1.3"/><circle cx="16.5" cy="8" r="1.3"/><path d="M10.8 5c-.4-2 .9-2.9 1.2-4.4 1.3 1.1 1.9 2.7 1.2 4.4z"/><path d="M.8 22.5c0-5.2 1.3-9 4.3-10.5 1.7-.8 3-.4 3.8 1.4h6.2c.8-1.8 2.1-2.2 3.8-1.4 3 1.5 4.3 5.3 4.3 10.5z"/>`];
+const RACE_OF = [0, 0, 1, 1, 2, 2, 3, 4]; // RACES index -> RACE_ICON index
+const CARD_ICON = {
+  ferry: `<path fill="currentColor" d="M2.5 15h19l-3.2 5H5.7zM12.8 3.5l6.2 9.5h-6.2zM11.2 5.5L5.5 13h5.7z"/><path d="M12 2.5V15" ${S} stroke-width="1.4"/>`,
+  air: `<ellipse cx="12.5" cy="8" rx="8.5" ry="4" fill="currentColor"/><path fill="currentColor" d="M4.5 8L1 4.5v7zM8.5 15.5h8l-1.5 3.5h-5z"/><path ${S} stroke-width="1.4" d="M9 11.8l.8 3.7M16 11.8l-.8 3.7M21.5 5.5v5"/>`,
+  conq: `<path ${S} d="M5 21.5V2.5"/><path fill="currentColor" d="M6 3.5h13l-3 4.5 3 4.5H6z"/>`};
+const glyph = (inner, size = 20, fill = "none") => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${fill}" aria-hidden="true">${inner}</svg>`;
+const raceIcon = (r, size = 20) => glyph(RACE_ICON[RACE_OF[r]], size, "currentColor");
+const guildName = g => `<span class="gl">${glyph(GUILD_ICON[g], 18)}${g}</span>`;
+const nb = t => t.replace(/ /g, "\u00a0"); // keep "2d 10:00:43" on one line
+const chip = i => `<span class="chip" style="--c:${DAYS[i].c}">${elIcon(i)}${DAYS[i].n}</span>`;
 
 // ---- Horizon wiki VanaTime.js data ----
 // route = [name, offset, interval, anim_arrive, waiting, anim_depart]; boards = off+arr, departs = off+arr+wait
@@ -260,7 +321,7 @@ function local(ms){
   const t = d.toLocaleTimeString([], {hour:"numeric", minute:"2-digit"});
   return sameDay ? t : `${d.toLocaleDateString([], {weekday:"short", month:"short", day:"numeric"})}, ${t}`;
 }
-const vDate = d => `Year ${Math.floor(d / 360)}, month ${Math.floor(d % 360 / 30) + 1}, day ${d % 30 + 1}`;
+const vDate = d => `Y${Math.floor(d / 360)} M${Math.floor(d % 360 / 30) + 1} D${d % 30 + 1}`;
 function period(h){ // wiki script's time-of-day buckets
   if (h <= 3) return "Midnight"; if (h <= 5) return "New day"; if (h === 6) return "Dawn";
   if (h <= 16) return "Day"; if (h === 17) return "Dusk"; if (h <= 19) return "Evening"; return "Night";
@@ -305,49 +366,45 @@ function skyAt(h){ for (let i = 0; i < SKY.length - 1; i++){ const [h0,t0,b0] = 
 let lastDay = null;
 function tick(){
   const nowE = Date.now(), now = vmNow(), d = Math.floor(now / 1440), m = now - d * 1440, h = Math.floor(m / 60);
-  const today = DAYS[wd(d)], tomorrow = DAYS[wd(d + 1)];
 
   $("clock").textContent = hhmm(now);
-  $("date").textContent = `${period(h)}, ${vDate(d)}`;
-  $("todayEl").textContent = today.n; $("todayEl").style.color = today.c;
-  $("todayNote").textContent = `${MOON_NAMES[moonPhase(d)]}, ${moonPct(d)}%`;
-  $("nextDay").textContent = `${tomorrow.n} in ${dur(vmToEarth((d + 1) * 1440) - nowE)}`;
+  $("date").textContent = `${period(h)} · ${vDate(d)}`;
 
+  // sky tint pulled most of the way toward the panel color; sun/moon rides a flat 24h bar
   const hf = m / 60, [top, bot] = skyAt(hf), sky = $("sky");
-  sky.style.setProperty("--sky-top", top); sky.style.setProperty("--sky-bot", bot);
-  const isSun = hf >= 6 && hf < 18, t = isSun ? (hf - 6) / 12 : ((hf + 6) % 24) / 12;
-  const body = $("body"); body.setAttribute("cx", 40 + 920 * t); body.setAttribute("cy", 200 - 2 * 252 * t * (1 - t)); body.setAttribute("fill", isSun ? "#F6C865" : "#EDE3BE");
+  sky.style.setProperty("--sky-top", mix(top, "#0E141B", .55)); sky.style.setProperty("--sky-bot", mix(bot, "#0E141B", .8));
+  const mark = $("dayMark"); mark.style.left = `${hf / 24 * 100}%`; mark.style.setProperty("--c", hf >= 6 && hf < 18 ? "#F6C865" : "#EDE3BE");
 
   // tiles
   const md = moonDay(d);
   $("tMoonIcon").innerHTML = moonSVG(d, 52);
-  $("tMoon").textContent = `${MOON_NAMES[moonPhase(d)]}, ${moonPct(d)}%`;
-  $("tMoonNew").textContent = `New moon in ${dur(vmToEarth((d + ((42 - md + 84) % 84 || 84)) * 1440) - nowE)}`;
-  $("tMoonFull").textContent = `Full moon in ${dur(vmToEarth((d + ((84 - md) % 84 || 84)) * 1440) - nowE)}`;
+  $("tMoon").textContent = `${MOON_NAMES[moonPhase(d)]} · ${moonPct(d)}%`;
+  $("tMoonNew").textContent = `New moon in ${nb(dur(vmToEarth((d + ((42 - md + 84) % 84 || 84)) * 1440) - nowE))}`;
+  $("tMoonFull").textContent = `Full moon in ${nb(dur(vmToEarth((d + ((84 - md) % 84 || 84)) * 1440) - nowE))}`;
   const conqMs = EWEEK - ((nowE - CONQ_EPOCH) % EWEEK);
-  $("tConq").textContent = `In ${dur(conqMs)}`;
-  $("tConqAt").textContent = local(nowE + conqMs);
+  $("oConq").textContent = `in ${dur(conqMs)}`;
+  $("oConqAt").textContent = local(nowE + conqMs);
   const gs = GUILDS.map(g => ({g, s: guildState(g, now)})), openCount = gs.filter(x => x.s.open).length;
   const nextG = gs.filter(x => !x.s.open).sort((a, b) => a.s.at - b.s.at)[0];
   $("tGuild").textContent = `${openCount} of ${GUILDS.length} open now`;
-  $("tGuildNext").textContent = nextG ? `${nextG.g[0]} opens in ${dur(vmToEarth(nextG.s.at) - nowE)}` : "";
+  $("tGuildNext").textContent = nextG ? `${nextG.g[0]} opens in ${nb(dur(vmToEarth(nextG.s.at) - nowE))}` : "";
 
   // overview
+  // show whichever comes first: boarding opens, or (if already boarding) departure
+  const nextLeg = x => x.board > now ? `boards in ${dur(vmToEarth(x.board) - nowE)}` : `departs in ${dur(vmToEarth(x.dep) - nowE)}`;
   const ferry = portRows([...BOATS_MAIN.Selbina, ...BOATS_MAIN.Mhaura], now, 1)[0];
-  $("oFerry").textContent = ferry.name; $("oFerryT").textContent = `Departs in ${dur(vmToEarth(ferry.dep) - nowE)}`;
+  $("oFerry").textContent = ferry.name; $("oFerryT").textContent = nextLeg(ferry);
   const air = portRows(Object.values(AIR).flat(), now, 1)[0];
-  $("oAir").textContent = air.name; $("oAirT").textContent = `Departs in ${dur(vmToEarth(air.dep) - nowE)}`;
+  $("oAir").textContent = air.name; $("oAirT").textContent = nextLeg(air);
   const w = Math.floor((nowE - RSE_DATE) / (8 * EDAY));
-  $("oRse").textContent = `${RACES[w % 8]}, ${RSE_LOC[w % 3]}`;
-  $("oRseT").textContent = `Changes in ${dur(RSE_DATE + (w + 1) * 8 * EDAY - nowE)}`;
-  $("oGuild").textContent = gs.filter(x => x.s.open).map(x => x.g[0]).join(", ") || "None";
-  $("oGuildT").textContent = `${openCount} of ${GUILDS.length} halls`;
+  $("oRse").textContent = RACES[w % 8]; $("icoRse").innerHTML = raceIcon(w % 8, 22); $("oRseLoc").textContent = RSE_LOC[w % 3];
+  $("oRseT").textContent = `changes in ${dur(RSE_DATE + (w + 1) * 8 * EDAY - nowE)}`;
   document.querySelectorAll("#strip .when").forEach((el, i) => { if (i) el.textContent = `In ${dur(+el.dataset.start - nowE)}`; });
 
   // calendar
   $("rseOut").innerHTML = Array.from({length: 9}, (_, i) => {
     const k = w + i, start = RSE_DATE + k * 8 * EDAY;
-    return `<tr class="${i ? "" : "cur"}"><td>${RACES[k % 8]}</td><td>${RSE_LOC[k % 3]}</td><td>${i ? local(start) : "Now"}</td><td class="cd">${i ? dur(start - nowE) : `ends in ${dur(start + 8 * EDAY - nowE)}`}</td></tr>`;
+    return `<tr class="${i ? "" : "cur"}"><td><span class="gl">${raceIcon(k % 8, 18)}${RACES[k % 8]}</span></td><td>${RSE_LOC[k % 3]}</td><td>${i ? local(start) : "Now"}</td><td class="cd">${i ? dur(start - nowE) : `ends in ${dur(start + 8 * EDAY - nowE)}`}</td></tr>`;
   }).join("");
 
   // travel
@@ -356,7 +413,7 @@ function tick(){
   $("airOut").innerHTML = Object.entries(AIR).map(([k, r]) => portCard(`Jeuno and ${k}`, r, now, 4)).join("");
 
   // guilds
-  $("guildOut").innerHTML = gs.map(({g, s}) => `<tr><td>${g[0]}</td><td>${hhmm(g[1])} to ${hhmm(g[2])}</td><td>${DAYS[g[3]].n}</td>
+  $("guildOut").innerHTML = gs.map(({g, s}) => `<tr><td>${guildName(g[0])}</td><td>${hhmm(g[1])} to ${hhmm(g[2])}</td><td>${chip(g[3])}</td>
     <td class="${s.open ? "open" : "closed"}">${s.open ? "Open" : s.holidayToday ? "Holiday" : "Closed"}</td><td class="cd">${dur(vmToEarth(s.at) - nowE)}</td></tr>`).join("");
   const jst = new Date(nowE + 9 * 3600000), jstMid = Date.UTC(jst.getUTCFullYear(), jst.getUTCMonth(), jst.getUTCDate() + 1) - 9 * 3600000;
   $("jstReset").textContent = dur(jstMid - nowE);
@@ -366,10 +423,11 @@ function tick(){
 
 function renderDaily(d){
   const nowE = Date.now();
+  $("tDay").innerHTML = chip(wd(d));
   $("strip").innerHTML = Array.from({length: 8}, (_, i) => {
-    const x = d + i, info = DAYS[wd(x)];
-    return `<div class="day${i ? "" : " now"}" style="--c:${info.c}"><div class="when" data-start="${vmToEarth(x * 1440)}">${i ? "" : "Now"}</div>
-      <div class="name">${info.n}</div><div class="m">${moonSVG(x, 26)}<span>${moonPct(x)}%<br>${MOON_NAMES[moonPhase(x)]}</span></div></div>`;
+    const x = d + i;
+    return `<div class="day${i ? "" : " now"}"><div class="when" data-start="${vmToEarth(x * 1440)}">${i ? "" : "Now"}</div>
+      <div class="name">${chip(wd(x))}</div><div class="m">${moonSVG(x, 26)}<span>${moonPct(x)}%<br>${MOON_NAMES[moonPhase(x)]}</span></div></div>`;
   }).join("");
 
   // moon phase windows
@@ -429,7 +487,7 @@ const pools = (z, d) => { const v = wxBlob(z[2])[lsbIndex(d)]; return [v >> 10, 
 const CHANCE = [50, 35, 15];
 function wxCell(id){
   const e = elemOf(id), dbl = e && id === e[1] + 1;
-  return `<span class="wx${e ? " el" : ""}${dbl ? " dbl" : ""}" style="${e ? `color:${DAYS[e[2]].c}` : "color:var(--muted)"}">${WX_NAMES[id] || "?"}</span>`;
+  return `<span class="wx${e ? " el" : ""}${dbl ? " dbl" : ""}" style="${e ? `color:${DAYS[e[2]].c}` : "color:var(--muted)"}">${e ? elIcon(e[2], 14) : ""}${WX_NAMES[id] || "?"}</span>`;
 }
 let wxPick = null;
 function renderWeather(d){
@@ -437,7 +495,7 @@ function renderWeather(d){
     const p = pools(z, d), hit = p.map((id, i) => elemOf(id) === e ? CHANCE[i] : 0), pct = hit.reduce((a, b) => a + b, 0);
     return pct ? {z, pct, ids: [...new Set(p.filter(id => elemOf(id) === e))]} : null; }).filter(Boolean)}));
   if (wxPick === null) wxPick = WX_ELEM[wd(d)][0];
-  $("wxGrid").innerHTML = counts.map(({e, zones}) => `<button type="button" data-el="${e[0]}" aria-pressed="${wxPick === e[0]}" style="--c:${DAYS[e[2]].c}"><b>${e[0]}</b><span>${zones.length} zone${zones.length === 1 ? "" : "s"}</span></button>`).join("");
+  $("wxGrid").innerHTML = counts.map(({e, zones}) => `<button type="button" data-el="${e[0]}" aria-pressed="${wxPick === e[0]}" style="--c:${DAYS[e[2]].c}"><b>${elIcon(e[2], 18)}${e[0]}</b><span>${zones.length} zone${zones.length === 1 ? "" : "s"}</span></button>`).join("");
   const sel = counts.find(c => c.e[0] === wxPick);
   $("wxZones").innerHTML = sel.zones.sort((a, b) => b.pct - a.pct || a.z[1].localeCompare(b.z[1])).map(x =>
     `<tr><td>${x.z[1]}</td><td>${x.ids.map(wxCell).join(", ")}</td><td class="cd">${x.pct}%</td></tr>`).join("") || `<tr><td colspan="3">No zone can roll ${wxPick} weather today.</td></tr>`;
@@ -449,7 +507,7 @@ function renderZoneForecast(d){
     const p = pools(z, x);
     if (want && !p.some(id => elemOf(id) && elemOf(id)[0] === want)) continue;
     const start = vmToEarth(x * 1440), live = x === d;
-    rows.push(`<tr class="${live ? "cur" : ""}"><td style="color:${DAYS[wd(x)].c};font-weight:500">${DAYS[wd(x)].n}</td><td>${live ? "Today" : local(start)}</td>${p.map(id => `<td>${wxCell(id)}</td>`).join("")}</tr>`);
+    rows.push(`<tr class="${live ? "cur" : ""}"><td>${chip(wd(x))}</td><td>${live ? "Today" : local(start)}</td>${p.map(id => `<td>${wxCell(id)}</td>`).join("")}</tr>`);
   }
   $("wxOut").innerHTML = rows.join("") || `<tr><td colspan="5">${z[1]} never gets ${want} weather.</td></tr>`;
 }
@@ -467,6 +525,7 @@ function show(name){
   try { history.replaceState(null, "", "#" + name); } catch(e){}
 }
 tabs.forEach(b => b.addEventListener("click", () => show(b.dataset.tab)));
+document.addEventListener("click", ev => { const a = ev.target.closest("[data-go]"); if (!a) return; ev.preventDefault(); show(a.dataset.go); document.querySelector("nav[role=tablist]").scrollIntoView({behavior: "smooth", block: "start"}); });
 show(tabs.some(b => b.dataset.tab === location.hash.slice(1)) ? location.hash.slice(1) : "overview");
 
 // live population via the wiki's fetchproxy (works when self-hosted; blocked inside claude.ai)
@@ -477,11 +536,13 @@ async function loadPop(){
     if (typeof n !== "number" || !n) return;
     const pct = n >= 2001 ? "2.5%" : n >= 1001 ? "2%" : "1.5%";
     $("tSync").textContent = `${pct} per level over +10`;
-    $("tSyncPop").textContent = `${n.toLocaleString()} online now`;
+    $("tSyncPop").textContent = n >= 2001 ? "Tier for 2,001+ online" : n >= 1001 ? "Tier for 1,001 to 2,000 online" : "Tier for 1,000 or fewer online";
+    $("onlineN").textContent = n.toLocaleString(); $("online").hidden = false;
   } catch(e){ /* keep the static tiers */ }
 }
 loadPop(); setInterval(loadPop, 300000);
 
+$("icoFerry").innerHTML = glyph(CARD_ICON.ferry, 22); $("icoAir").innerHTML = glyph(CARD_ICON.air, 22); $("icoConq").innerHTML = glyph(CARD_ICON.conq, 22);
 tick(); setInterval(tick, 1000);
 </script>
 </body>
