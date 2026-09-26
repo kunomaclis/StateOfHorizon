@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>State of Horizon</title>
+<link rel="icon" id="favicon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Inconsolata:wght@400;600&family=Oswald:wght@500&display=swap" rel="stylesheet">
@@ -292,6 +293,8 @@ const glyph = (inner, size = 20, fill = "none") => `<svg width="${size}" height=
 const raceIcon = (r, size = 20) => glyph(RACE_ICON[RACE_OF[r]], size, "currentColor");
 const guildName = g => `<span class="gl">${glyph(GUILD_ICON[g], 18)}${g}</span>`;
 const nb = t => t.replace(/ /g, "\u00a0"); // keep "2d 10:00:43" on one line
+// tab icon: today's element glyph on a dark tile, swapped when the Vana day changes
+const favicon = i => "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" color="${DAYS[i].c}"><rect width="24" height="24" rx="5" fill="#05080B"/><g transform="translate(1.8 1.8) scale(.85)">${EL_ICON[i]}</g></svg>`);
 const chip = i => `<span class="chip" style="--c:${DAYS[i].c}">${elIcon(i)}${DAYS[i].n}</span>`;
 
 // ---- Horizon wiki VanaTime.js data ----
@@ -473,7 +476,7 @@ function tick(){
 
 function renderDaily(d){
   const nowE = Date.now();
-  $("tDay").innerHTML = chip(wd(d));
+  $("tDay").innerHTML = chip(wd(d)); $("favicon").href = favicon(wd(d));
   $("strip").innerHTML = Array.from({length: 8}, (_, i) => {
     const x = d + i;
     return `<div class="day${i ? "" : " now"}"><div class="when" data-start="${vmToEarth(x * 1440)}">${i ? "" : "Now"}</div>
