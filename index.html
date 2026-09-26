@@ -44,7 +44,7 @@ body{margin:0;min-height:100vh;color:var(--ink);font-family:var(--sans);font-siz
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:0 0 16px 16px;overflow:hidden}
 .tile{padding:16px 20px;background:var(--surface);display:flex;gap:14px;align-items:center;min-width:0}
 .tile h2{margin:0 0 4px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.tile p{margin:0;color:var(--muted);font-size:.88rem}.tile .big{color:var(--ink);font-size:1.02rem;font-weight:500}
+.tile p{margin:0;color:var(--muted);font-size:.84rem}.tile .next{margin-top:6px;font-size:.8rem;color:var(--dim)}.tile .big{color:var(--ink);font-size:1.02rem;font-weight:500}
 .online{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:5px 12px;border:1px solid rgba(95,196,138,.35);border-radius:999px;background:rgba(95,196,138,.08);color:var(--muted);font-size:.92rem}
 .online b{color:#fff;font-size:1.05rem;font-weight:700}
 .online .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(95,196,138,.6);animation:pulse 2s infinite}
@@ -130,9 +130,10 @@ footer{margin-top:40px;color:var(--dim);font-size:.88rem;max-width:72ch}
 .wxgrid span{color:var(--dim);font-size:.85rem}
 .wx{white-space:nowrap}.wx.el{font-weight:500;display:inline-flex;align-items:center;gap:5px}.wx.dbl::after{content:" (double)";font-weight:400;color:var(--dim);font-size:.85em}
 .card .more{display:inline-block;margin-top:14px;text-decoration:none}.card .more:hover{text-decoration:underline}
-@media (max-width:1060px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:1279px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.tiles{grid-template-columns:1fr}}
 @media (max-width:900px){.rse,.rows.two{grid-template-columns:1fr}}
-@media (max-width:640px){.sect-h,.sect-b{padding:18px}.rowi{padding:12px 18px}.hero .content{padding:24px 22px 18px}.daybar{padding:0 22px 16px}.time{text-align:left}.tiles{grid-template-columns:1fr}}
+@media (max-width:640px){.sect-h,.sect-b{padding:18px}.rowi{padding:12px 18px}.hero .content{padding:24px 22px 18px}.daybar{padding:0 22px 16px}.time{text-align:left}}
 @media (prefers-reduced-motion:reduce){.hero,nav button{transition:none}.online .dot{animation:none}}
 </style>
 </head>
@@ -156,11 +157,11 @@ footer{margin-top:40px;color:var(--dim);font-size:.88rem;max-width:72ch}
 <div class="tiles">
   <div class="tile"><span id="tMoonIcon"></span><div><h2>Moon</h2><p class="big" id="tMoon"></p><p id="tMoonNew"></p><p id="tMoonFull"></p></div></div>
   <div class="tile"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
-    <div><h2>Day cycle</h2><p class="big" id="tDay"></p></div></div>
+    <div><h2>Day cycle</h2><p class="big" id="tDay"></p><p class="next" id="nextDay"></p></div></div>
   <div class="tile"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v10h14V10M10 20v-5h4v5"/></svg></span>
     <div><h2>Guild halls</h2><p class="big" id="tGuild"></p><p id="tGuildNext"></p></div></div>
   <div class="tile"><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
-    <div><h2>Level sync</h2><p class="big" id="tSync">1.5% to 2.5% per level over +10</p><p id="tSyncPop">Scales with players online</p></div></div>
+    <div><h2>Level sync</h2><p class="big" id="tSync">1.5% to 2.5% per level over&nbsp;+10</p><p id="tSyncPop">Scales with players online</p></div></div>
 </div>
 
 <nav role="tablist" aria-label="Sections">
@@ -416,6 +417,7 @@ function tick(){
 
   $("clock").textContent = hhmm(now);
   $("date").textContent = `${period(h)} · ${vDate(d)}`;
+  $("nextDay").textContent = `${DAYS[wd(d + 1)].n} ${nb(`in ${dur(vmToEarth((d + 1) * 1440) - nowE)}`)}`;
 
   // sky tint pulled most of the way toward the panel color; sun/moon rides a flat 24h bar
   const hf = m / 60, [top, bot] = skyAt(hf), sky = $("sky");
@@ -425,9 +427,9 @@ function tick(){
   // tiles
   const md = moonDay(d);
   $("tMoonIcon").innerHTML = moonSVG(d, 52);
-  $("tMoon").textContent = `${MOON_NAMES[moonPhase(d)]} · ${moonPct(d)}%`;
-  $("tMoonNew").textContent = `New moon in ${nb(dur(vmToEarth((d + ((42 - md + 84) % 84 || 84)) * 1440) - nowE))}`;
-  $("tMoonFull").textContent = `Full moon in ${nb(dur(vmToEarth((d + ((84 - md) % 84 || 84)) * 1440) - nowE))}`;
+  $("tMoon").textContent = `${MOON_NAMES[moonPhase(d)]} ${nb(`· ${moonPct(d)}%`)}`;
+  $("tMoonNew").textContent = `New moon ${nb(`in ${dur(vmToEarth((d + ((42 - md + 84) % 84 || 84)) * 1440) - nowE)}`)}`;
+  $("tMoonFull").textContent = `Full moon ${nb(`in ${dur(vmToEarth((d + ((84 - md) % 84 || 84)) * 1440) - nowE)}`)}`;
   const conqMs = EWEEK - ((nowE - CONQ_EPOCH) % EWEEK);
   $("oConq").textContent = `in ${dur(conqMs)}`;
   $("oConqAt").textContent = local(nowE + conqMs);
@@ -595,7 +597,7 @@ async function loadPop(){
     const n = (await r.json()).fetchproxy;
     if (typeof n !== "number" || !n) return;
     const pct = n >= 2001 ? "2.5%" : n >= 1001 ? "2%" : "1.5%";
-    $("tSync").textContent = `${pct} per level over +10`;
+    $("tSync").textContent = `${pct} per level ${nb("over +10")}`;
     $("tSyncPop").textContent = n >= 2001 ? "Tier for 2,001+ online" : n >= 1001 ? "Tier for 1,001 to 2,000 online" : "Tier for 1,000 or fewer online";
     $("onlineN").textContent = n.toLocaleString(); $("online").hidden = false;
   } catch(e){ /* keep the static tiers */ }

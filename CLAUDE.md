@@ -1,6 +1,6 @@
 # State of Horizon
 
-Fan-made world info page for the HorizonXI FFXI private server, modeled on Phoenix's world-info page (phoenix-xi.com/world-info). Goal: polished enough that the Horizon team adopts it.
+Fan-made world info page for the HorizonXI FFXI private server, modeled on Phoenix's world-info page (phoenix-xi.com/world-info).
 
 - Live: https://kunomaclis.github.io/StateOfHorizon/ (lowercase path also works)
 - Repo: github.com/kunomaclis/StateOfHorizon, GitHub Pages from `main` / root, HTTPS enforced
@@ -10,12 +10,11 @@ Fan-made world info page for the HorizonXI FFXI private server, modeled on Phoen
 
 1. **All data must come from Horizon sources.** Precedence: Horizon wiki's VanaTime.js (Horizogenes) > other Horizon wiki pages > Horizon API. LandSandBoat (LSB) is used only where the Horizon wiki itself says it uses LSB, and only after verifying LSB output matches the wiki.
 2. **Verify, don't assume.** Every constant below was checked against live Horizon wiki output or Phoenix screenshots. If you change math, re-run the calibration checks.
-3. **Don't copy Horizon's assets** (e.g. Highwind font) into this repo without their permission.
-4. Owner prefers concise, direct prose, no em dashes, and pushback when something is over-engineered.
+3. **Don't copy Horizon's or Phoenix's assets** (fonts, crests, screenshots) into this repo without permission.
 
 ## Page structure
 
-Layout mirrors Phoenix. Hero: kicker `Period · Y1513 M5 D22`, title and subtitle on the left, big Highwind clock on the right with a green "N players online" badge under it (hidden until the population fetch succeeds), flat 24h day bar with a sun/moon marker along the bottom (subtle sky tint keyed to Vana hour). 4 tiles: Moon, Day cycle (element chip only; the strip below shows upcoming days), Guild halls, Level sync (sub-line names the population tier). Tiles go 4 -> 2 -> 1 columns at 1060px / 640px; dividers are 1px grid gaps. Tabs: Overview (8-day strip, then Next ferry / Next airship / Current RSE / Conquest tally cards with "View ... →" links), Calendar & RSE, Travel, Guilds, Weather.
+Layout mirrors Phoenix. Hero: kicker `Period · Y1513 M5 D22`, title and subtitle on the left, big Highwind clock on the right with a green "N players online" badge under it (hidden until the population fetch succeeds), flat 24h day bar with a sun/moon marker along the bottom (subtle sky tint keyed to Vana hour). 4 tiles: Moon, Day cycle (element chip + small "Firesday in 00:47:56" line), Guild halls, Level sync (sub-line names the population tier). Tiles go 4 -> 2 -> 1 columns below 1280px / 720px (set so the longest line, "Goldsmithing opens in 00:00:00", never wraps); countdown phrases use `nb()` so "in 00:00:00" stays together. Dividers are 1px grid gaps. Tabs: Overview (8-day strip, then Next ferry / Next airship / Current RSE / Conquest tally cards with "View ... →" links), Calendar & RSE, Travel, Guilds, Weather.
 
 Tabs use "section panels" (`.sect`: kicker + Highwind title header, body below). Times are list rows (`depRow`/`.rowi`): route, Vana day + boards/departs times, countdown to boarding (then departure) with local departure time under it.
 - Calendar: active RSE panel beside upcoming rotation list; moon phases, find a day, chocobo game as panels with tables.
@@ -64,15 +63,14 @@ Day chips: element glyph + day name on a dark `#05080B` plate with a day-colored
 
 ## Style (matched to horizonxi.com dark pages)
 
-- Highwind verified loading on github.io (horizonxi.com sends `access-control-allow-origin: *`).
-
-- Fonts: Highwind (display, loaded from `https://horizonxi.com/fonts/hinted-Highwind.woff2`, fallback Oswald), Roboto (body), Inconsolata (countdowns/times).
-- Colors: bg `#080D12`, text `#E1E1E1`, cream `#FDF6E3`, muted `#A9AFB5`, accent `#50B4D6`, gold `#E6B94F`. Faint teal + gold radial glows. Translucent dark panels, hairline borders, capsule tab bar with teal-ringed active pill. Dark mode only.
+- Fonts: Highwind (display, loaded from `https://horizonxi.com/fonts/hinted-Highwind.woff2`, which sends `access-control-allow-origin: *`; fallback Oswald), Roboto (body), Inconsolata (countdowns/times).
+- Colors: bg `#080D12`, surface `#121921` (all panels), inset `rgba(8,13,18,.45)` (items inside panels), text `#E1E1E1`, cream `#FDF6E3`, muted `#A9AFB5`, accent `#50B4D6`. Faint teal + gold radial glows on the page background. Hairline borders, capsule tab bar with teal-ringed active pill. Dark mode only.
 
 ## Open items
 
-- **Design cleanup pass** is next (owner has ideas pending).
 - Alchemy holiday conflict: wiki script says Lightningday; wiki Alchemy page says Lightsday (Bastok) / Lightningday (Whitegate). Using script value, flagged in UI. Verify in game.
 - Bastok airship: script departs 01:14, wiki static table 01:12 (about 5 real seconds). Using script.
 - Daily guild point items: no Horizon source exists (community posts it in Horizon Discord). Not implemented.
+- Weather list may include zones outside Horizon's era (Everbloom Hollow, Ghoyu's Reverie, Ruhotz Silvermines). Unverified.
+- Weather % uses LSB's 50/35/15 roll and ignores LSB's 02:00-07:00 fog override (noted in UI). Horizon's server code isn't public, so the odds are unverified.
 - Wiki script bug (not ours): its "holiday tomorrow" check never fires Darksday -> Firesday.
